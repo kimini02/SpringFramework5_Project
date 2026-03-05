@@ -1,95 +1,34 @@
-# Spring DI 실습1 - 경로 파익 및 요약정리
+# Spring DI 실습 1 (XML 기반 DI) - 개념 정리 및 경로
 
-## 프로젝트 설명
+간단한 쇼핑카트 시스템을 Spring XML 설정으로 DI(Dependency Injection) 연습한 과제입니다.
 
-Spring Framework의 Dependency Injection(XML 설정 방식)을 이용하여
-주문(OrderService) - 장바구니(ShoppingCart) - 상품(Product) 구조를 구현한 실습입니다.
-
-Spring XML 설정을 통해 객체 간 의존성을 주입하여 주문 총 금액을 계산하도록 구성했습니다.
-
----
-
-## 프로젝트 구조
-
-### Java 클래스 경로
-
-```
-src/main/java/mylab/order/di/xml/
-```
-
-포함된 클래스
-
-```
-Product.java
-ShoppingCart.java
-OrderService.java
-```
+## ✅ 과제 요구사항 요약
+- Product 2개를 Spring Bean으로 등록
+  - product1: **setter injection**
+  - product2: **constructor injection**
+- ShoppingCart Bean 등록 후 `products(List<Product>)`를 **list로 주입**
+- OrderService Bean 등록 후 `shoppingCart`를 **property(ref)로 주입**
+- JUnit 테스트로 DI 정상 동작 검증
 
 ---
 
-### Spring 설정 파일
+## 📁 파일 경로 (제출 확인용)
 
-```
-src/main/resources/
-```
+### 1) Java Source (main)
+- `src/main/java/mylab/order/di/xml/Product.java`
+- `src/main/java/mylab/order/di/xml/ShoppingCart.java`
+- `src/main/java/mylab/order/di/xml/OrderService.java`
 
-파일
+### 2) Spring XML 설정 (resources)
+- `src/main/resources/mylab-order-di.xml`
 
-```
-mylab-order-di.xml
-```
-
----
-
-### 테스트 코드
-
-```
-src/test/java/mylab/order/di/xml/
-```
-
-파일
-
-```
-OrderSpringTest.java
-```
+### 3) Test 코드 (test)
+- `src/test/java/mylab/order/di/xml/OrderSpringTest.java`
 
 ---
 
-## 클래스 역할
+## ▶ 실행 방법
 
-### Product
-
-상품 정보를 저장하는 클래스
-(id, name, price)
-
-### ShoppingCart
-
-상품 리스트를 보관하고 총 금액을 계산하는 클래스
-
-### OrderService
-
-ShoppingCart를 주입받아 주문 총 금액을 계산하는 서비스 클래스
-
----
-
-## DI 방식
-
-Spring XML 기반 Dependency Injection 사용
-
-```
-mylab-order-di.xml
-```
-
-에서 Bean을 생성하고 의존성을 주입합니다.
-
----
-
-## 실행 테스트
-
-JUnit 테스트
-
-```
-OrderSpringTest
-```
-
-를 통해 주문 총 금액 계산을 확인합니다.
+### 1) 과제 테스트만 실행 (추천)
+```bash
+./gradlew test --tests "mylab.order.di.xml.OrderSpringTest"
