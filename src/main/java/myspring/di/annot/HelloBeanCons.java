@@ -20,7 +20,6 @@ public class HelloBeanCons {
 	public HelloBeanCons() {
 		System.out.println(this.getClass().getName() + " 기본생성자 호출됨!");
 	}
-	
 	@Autowired
 	public HelloBeanCons(@Value("${myNameC}") String name, 
 						 @Qualifier("consolePrinter") IPrinter printer) {
